@@ -40,9 +40,6 @@ export class BBIntegration {
     chave_pix: string = '';
 
 
-    constructor() {
-    }
-
     async init(integracao_id: string) {
         try {
             let integracao: any = await IntegracoesModel.findById(integracao_id);
@@ -55,7 +52,7 @@ export class BBIntegration {
             this.client_secret = integracao.client_secret!;
             this.gwAppKey = integracao.bbAppKey!;
 
-            this.auth_url = 'https://oauth.hm.bb.com.br/oauth/token';
+            this.auth_url = 'https://oauth.bb.com.br/oauth/token';
             this.url = 'https://api-pix.bb.com.br';
 
             this.httpsAgent = new https.Agent({
@@ -68,18 +65,15 @@ export class BBIntegration {
                 // Dura apenas 10 min
                 let tokenAge = (Date.now() - integracao.last_bearer_token_update.getTime()) / 1000;
                 if (tokenAge < 600) {
-                    console.log("Token BB ainda válido, usando existente.");
                     this.bearer_token = integracao.bearer_token;
                     this.authorized = true;
                     need_auth = false;
                 } else {
-                    console.log("Token BB expirado, renovando...");
                     need_auth = true;
                 }
             }
             if (need_auth) {
                 this.bearer_token = await this.authenticate();
-                console.log("Authenticated BB", this.bearer_token);
                 integracao.bearer_token = this.bearer_token;
                 integracao.last_bearer_token_update = new Date();
                 await integracao.save();
@@ -95,6 +89,9 @@ export class BBIntegration {
         try {
             logDev("Iniciando autenticação Pix...");
             let basicToken = Buffer.from(`${this.client_id}:${this.client_secret}`).toString('base64');
+            const form = new URLSearchParams();
+            form.append('grant_type', 'client_credentials');
+            form.append('scope', 'cob.write cob.read pix.write pix.read');
             let response = await axios({
                 method: "POST",
                 url: this.auth_url,
@@ -102,10 +99,7 @@ export class BBIntegration {
                     'Content-Type': 'application/x-www-form-urlencoded',
                     'Authorization': `Basic ${basicToken}`
                 },
-                data: {
-                    scope: 'cob.write cob.read pix.write pix.read',
-                    grant_type: 'client_credentials'
-                }
+                data: form.toString()
             })
             logDev("Resposta da autenticação Pix:", response.data);
             return `${response.data.token_type} ${response.data.access_token}`;
@@ -205,7 +199,6 @@ export class BBIntegration {
                     'authorization': this.bearer_token
                 }
             })
-            // console.log(JSON.stringify(response.data, null, 2));
         } catch (error: any) {
             if (error.response.data) {
                 console.log("Erro ao consultar Pix recebidos:", JSON.stringify(error.response.data, null, 2));

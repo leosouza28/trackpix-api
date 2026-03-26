@@ -272,10 +272,9 @@ async function start() {
                 //     await processarListaPixs(response, integracao!);
                 // }
 
-                let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb33' });
-                let bb = new BBIntegration();
-                await bb.init(integracao!._id.toString())
-
+                // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb33' });
+                // let bb = new BBIntegration();
+                // await bb.init(integracao!._id.toString())
                 // let dias_pra_tras = 90;
                 // for (let d = 0; d <= dias_pra_tras; d++) {
                 //     try {

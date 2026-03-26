@@ -46,7 +46,7 @@ export async function ajustaEmpresaPedro() {
 export default {
     syncEmpresaIntegracoes: async (req: Request, res: Response) => {
         try {
-            let integracoes = await IntegracoesModel.find({ 'empresa._id': String(req.empresa._id) });
+            let integracoes = await IntegracoesModel.find({ 'empresa._id': String(req.empresa._id), 'active': true });
             if (!integracoes.length) return;
             let agora = dayjs().add(-3, 'h').format('YYYY-MM-DD');
             let lista_pix: any[] = [];

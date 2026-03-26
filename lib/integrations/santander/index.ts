@@ -98,7 +98,6 @@ export class SantanderIntegration {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             })
-            console.log(response.data);
             return `Bearer ${response.data.access_token}`;
         } catch (error) {
             throw error;
