@@ -44,25 +44,33 @@ export class SantanderIntegration {
             this.client_secret = integracao.client_secret!;
             this.auth_url = 'https://trust-pix.santander.com.br/oauth/token'
             this.url = 'https://trust-pix.santander.com.br';
+
             let certPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.crt');
+            if (fs.existsSync(certPath) === false) {
+                certPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.pem');
+                if (fs.existsSync(certPath) === false) {
+                    throw new Error('Certificado não encontrado');
+                }
+            }
             let keyPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'key.pem');
+
             this.httpsAgent = new https.Agent({
                 cert: fs.readFileSync(certPath),
                 key: fs.readFileSync(keyPath),
                 rejectUnauthorized: false
             })
             let need_auth = true
-            // if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
-            //     // Dura apenas 1 hora
-            //     let tokenAge = (Date.now() - integracao.last_bearer_token_update.getTime()) / 1000;
-            //     if (tokenAge < 3600) {
-            //         this.bearer_token = integracao.bearer_token;
-            //         this.authorized = true;
-            //         need_auth = false;
-            //     } else {
-            //         need_auth = true;
-            //     }
-            // }
+            if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
+                // Dura apenas 10 min
+                let tokenAge = (Date.now() - integracao.last_bearer_token_update.getTime()) / 1000;
+                if (tokenAge < 3599) {
+                    this.bearer_token = integracao.bearer_token;
+                    this.authorized = true;
+                    need_auth = false;
+                } else {
+                    need_auth = true;
+                }
+            }
             if (need_auth) {
                 this.bearer_token = await this.authenticate();
                 integracao.bearer_token = this.bearer_token;
@@ -90,6 +98,7 @@ export class SantanderIntegration {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }
             })
+            console.log(response.data);
             return `Bearer ${response.data.access_token}`;
         } catch (error) {
             throw error;

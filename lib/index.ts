@@ -22,6 +22,7 @@ import fs from 'fs';
 import { BradescoIntegration } from './integrations/bradesco';
 import Consoft from './integrations/consoft';
 import { BBIntegration } from './integrations/banco-brasil';
+import { SantanderIntegration } from './integrations/santander';
 
 dayjs.locale('pt-br');
 
@@ -271,9 +272,10 @@ async function start() {
                 //     await processarListaPixs(response, integracao!);
                 // }
 
-                // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb33' });
-                // let bb = new BBIntegration();
-                // await bb.init(integracao!._id.toString())
+                let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb33' });
+                let bb = new BBIntegration();
+                await bb.init(integracao!._id.toString())
+
                 // let dias_pra_tras = 90;
                 // for (let d = 0; d <= dias_pra_tras; d++) {
                 //     try {
@@ -282,8 +284,26 @@ async function start() {
                 //         let response = await bb.getRecebimentos(data, data);
                 //         await processarListaPixs(response, integracao!);
                 //     } catch (error) {
-                //         console.log("Erorr", error);
+                //         console.log("Erro", error);
                 //     }
+                // }
+
+                // let integracoes = await IntegracoesModel.find({ 'sku': { $in: ['guarasantander10', 'guarasantander33'] } });
+                // let santander = new SantanderIntegration();
+                // for (let integracao of integracoes) {
+                //     let __ = await santander.init(integracao!._id.toString())
+                //     let dias_pra_tras = 89;
+                //     for (let i = 0; i <= dias_pra_tras; i++) {
+                //         try {
+                //             let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
+                //             logDev(`Processando recebimentos do dia ${data} : ${integracao.nome}`);
+                //             let response = await santander.getRecebimentos(data, data);
+                //             await processarListaPixs(response, integracao!);
+                //         } catch (error) {
+                //             console.log("Error", error);
+                //         }
+                //     }
+                //     console.log("FIM INT")
                 // }
 
 

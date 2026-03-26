@@ -65,24 +65,27 @@ export class BBIntegration {
             })
             let need_auth = true
             if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
-                // Dura apenas 1 hora
+                // Dura apenas 10 min
                 let tokenAge = (Date.now() - integracao.last_bearer_token_update.getTime()) / 1000;
                 if (tokenAge < 600) {
-                    logDev("Token ainda válido, usando token existente.");
+                    console.log("Token BB ainda válido, usando existente.");
                     this.bearer_token = integracao.bearer_token;
                     this.authorized = true;
                     need_auth = false;
                 } else {
+                    console.log("Token BB expirado, renovando...");
                     need_auth = true;
                 }
             }
             if (need_auth) {
                 this.bearer_token = await this.authenticate();
+                console.log("Authenticated BB", this.bearer_token);
                 integracao.bearer_token = this.bearer_token;
                 integracao.last_bearer_token_update = new Date();
                 await integracao.save();
                 this.authorized = true;
             }
+
             return { success: 1, initializated: true }
         } catch (error: any) {
             return { success: 0, error: error?.message || "Erro desconhecido" }
@@ -114,6 +117,7 @@ export class BBIntegration {
 
     async getRecebimentos(dataInicial: string, dataFinal: string) {
         try {
+            if (!this.authorized) throw new Error('Integração não autorizada. Por favor, inicialize a integração primeiro.');
             let paginaAtual = 0;
             let totalPaginas = 1;
             let todosResultados: any[] = [];
