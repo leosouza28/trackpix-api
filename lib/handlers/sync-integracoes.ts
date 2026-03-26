@@ -14,6 +14,7 @@ import { POSModel } from "../models/pos.model";
 import { PIX_STATUS, PixModel } from "../models/pix.model";
 import { GATEWAY_BOLETO, RECEBIMENTO_BOLETO_SYNC_STATE, RecebimentosBoletosModel } from "../models/recebimentos-boletos.model";
 import { Query } from "mongoose";
+import { BBIntegration } from "../integrations/banco-brasil";
 
 export default async () => {
     try {
@@ -47,6 +48,12 @@ async function syncIntegracao(integracao: any, data: string) {
             let efi = new EfiIntegration();
             await efi.init(integracao._id.toString());
             let lista: any[] = await efi.getRecebimentos(hoje, hoje);
+            await processarListaPixs(lista, integracao);
+        }
+        if (integracao.banco == INTEGRACOES_BANCOS.BB) {
+            let bb = new BBIntegration();
+            await bb.init(integracao._id.toString());
+            let lista: any[] = await bb.getRecebimentos(hoje, hoje);
             await processarListaPixs(lista, integracao);
         }
         if (integracao.banco == INTEGRACOES_BANCOS.SICOOB) {

@@ -60,6 +60,7 @@ export const IntegracoesModel = mongoose.model("integracoes", ModelSchema);
 
 export const INTEGRACOES_BANCOS = {
     BRADESCO: 'BRADESCO',
+    BB: 'BANCO_BRASIL',
     SICOOB: 'SICOOB',
     ITAU: 'ITAU',
     SANTANDER: 'SANTANDER',

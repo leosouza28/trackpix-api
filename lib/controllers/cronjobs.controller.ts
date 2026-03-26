@@ -11,6 +11,7 @@ import { INTEGRACOES_BANCOS, IntegracoesModel } from "../models/integracoes.mode
 import { PixModel } from "../models/pix.model";
 import { RecebimentosPixModel } from "../models/recebimentos-pix.model";
 import { logDev } from "../util";
+import { BBIntegration } from "../integrations/banco-brasil";
 
 export async function ajustaEmpresaPedro() {
     let empresa_pedro = await EmpresasModel.findOne({ _id: "6963abe535c325bb9cf34355" }).lean();
@@ -64,6 +65,13 @@ export default {
                         let bradesco = new BradescoIntegration();
                         await bradesco.init(integracao._id.toString());
                         lista_pix = await bradesco.getRecebimentos(agora, agora)
+                        await processarListaPixs(lista_pix, integracao);
+                    }
+                    if (integracao?.banco == INTEGRACOES_BANCOS.BB) {
+                        // Process Banco do Brasil specific logic
+                        let bb = new BBIntegration();
+                        await bb.init(integracao._id.toString());
+                        lista_pix = await bb.getRecebimentos(agora, agora)
                         await processarListaPixs(lista_pix, integracao);
                     }
                     if (integracao?.banco == INTEGRACOES_BANCOS.ITAU) {
