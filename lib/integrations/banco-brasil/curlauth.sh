@@ -1,0 +1,6 @@
+curl \
+--request POST https://oauth.bb.com.br/oauth/token \
+--header 'Authorization: Basic ZXlKcFpDSTZJamswTVRWalpETXROVEEzTXkwaUxDSmpiMlJwWjI5UWRXSnNhV05oWkc5eUlqb3dMQ0pqYjJScFoyOVRiMlowZDJGeVpTSTZORFE1Tnpnc0luTmxjWFZsYm1OcFlXeEpibk4wWVd4aFkyRnZJam94ZlE6ZXlKcFpDSTZJbUV3WkRkaU1EQXROamcwWkMwME9XWmlMV0ZtT1RjdE16ZGtabVJrTlRJeVlUTTVZalkyTkRnMk9TSXNJbU52WkdsbmIxQjFZbXhwWTJGa2IzSWlPakFzSW1OdlpHbG5iMU52Wm5SM1lYSmxJam8wTkRrM09Dd2ljMlZ4ZFdWdVkybGhiRWx1YzNSaGJHRmpZVzhpT2pFc0luTmxjWFZsYm1OcFlXeERjbVZrWlc1amFXRnNJam95TENKaGJXSnBaVzUwWlNJNkluQnliMlIxWTJGdklpd2lhV0YwSWpveE56YzBOVFEzTVRRd01qWXlmUQ==' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--data "grant_type=client_credentials" \
+--data "scope=cob.write cob.read pix.write pix.read"

@@ -1,0 +1,100 @@
+import 'dotenv/config';
+import express from "express";
+import fs from "fs";
+import https from "https";
+import mongoose from 'mongoose';
+import { TLSSocket } from "tls";
+import { errorHandler } from "../util";
+
+const app = express();
+
+const pem_cert = "/etc/letsencrypt/live/webhook.trackpix.com.br/fullchain.pem";
+const key_cert = "/etc/letsencrypt/live/webhook.trackpix.com.br/privkey.pem";
+
+const httpsOptions: any = {
+    cert: fs.readFileSync(pem_cert), // Certificado fullchain do dominio
+    key: fs.readFileSync(key_cert), // Chave privada do domínio
+    minVersion: "TLSv1.2",
+    requestCert: true,
+    rejectUnauthorized: false, //Mantenha como false para que os demais endpoints da API não rejeitem requisições sem MTLS
+};
+let cert_efi = fs.readFileSync(__dirname + '/certificates/cert-efi.crt');
+let cert_itau = fs.readFileSync(__dirname + '/certificates/cert-itau.crt');
+httpsOptions.ca = [cert_efi, cert_itau]; // Adicione os certificados das instituições financeiras aqui
+
+const httpsServer = https.createServer(httpsOptions, app);
+const PORT = 443;
+const LOG_LEVEL = process.env.LOG_LEVEL || "DEFAULT";
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+
+app.use((req, res, next) => {
+    console.log("Received request:", req.method, req.url, req.body);
+    next()
+})
+
+app.get("/", (req, res, next) => {
+    res.json("Online!");
+})
+
+app.post("/webhook", async (request, response) => {
+    try {
+        console.log(LOG_LEVEL, "PIX Webhook Config Received", request.body);
+        response.status(200).end();
+    } catch (error) {
+        errorHandler(error, response);
+    }
+});
+
+app.post("/webhook/pix", async (request, response) => {
+    try {
+        console.log(LOG_LEVEL, "Webhook Received Successfully", request.body);
+        let tslSocket = request.socket as TLSSocket;
+        if (tslSocket?.authorized) {
+            let { body } = request;
+            console.log(LOG_LEVEL, JSON.stringify(body, null, 2));
+            if (body && body.pix) {
+                for (let item of body.pix) {
+                    // initiateWebhookProcessing(item);
+                }
+            }
+            response.status(200).end();
+        } else {
+            response.status(401).end();
+        }
+    } catch (error) {
+        errorHandler(error, response);
+    }
+});
+app.post("/webhook/sicoob", (request, response) => {
+    try {
+        console.log(LOG_LEVEL, "PIX Sicoob Webhook Config Received", request.body)
+        response.status(200).end();
+    } catch (error) {
+        errorHandler(error, response);
+    }
+});
+app.post("/webhook/sicoob/pix", (request, response) => {
+    try {
+        console.log(LOG_LEVEL, "PIX Sicoob Webhook Received", request.body)
+        let { body } = request;
+        console.log(LOG_LEVEL, JSON.stringify(body, null, 2));
+        response.status(200).end();
+    } catch (error) {
+        errorHandler(error, response);
+    }
+});
+
+const DB_URL = process.env.DB_URL!;
+httpsServer.listen(PORT, () => {
+    console.log("App online at:", PORT)
+    mongoose.connect(DB_URL)
+        .then(() => {
+            console.log("Connected to database");
+        })
+        .catch((error) => {
+            console.log("Database connection error:", error);
+        });
+})
+

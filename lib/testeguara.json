@@ -1,0 +1,1090 @@
+[
+  {
+    "endToEndId": "E18236120202603220236s09c504142e",
+    "txid": "0ff4f231207a4d4b8185699c0c64cdb9",
+    "valor": "183.96",
+    "horario": "2026-03-21T23:36:35.00-03:00",
+    "pagador": {
+      "cpf": "03837401260",
+      "nome": "SAMUEL ARAUJO DE PAIVA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "183.96"
+      }
+    }
+  },
+  {
+    "endToEndId": "E10573521202603221131svufXalHKPx",
+    "txid": "e61e8dde2a764c0f83dd205052f30e8e",
+    "valor": "229.80",
+    "horario": "2026-03-22T08:31:55.00-03:00",
+    "pagador": {
+      "cpf": "02679064208",
+      "nome": "PATRICIA DE FATIMA NUNES DE SOUSA"
+    },
+    "infoPagador": "PATRICIADEFAT",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "229.80"
+      }
+    }
+  },
+  {
+    "endToEndId": "E049137112026032212267YT4IKJOF7G",
+    "txid": "69b9b866d0104e6caccb80dff1618f92",
+    "valor": "324.24",
+    "horario": "2026-03-22T09:26:51.00-03:00",
+    "pagador": {
+      "cpf": "71557768234",
+      "nome": "ANA FLAVIA DOS SANTOS ABRANTES"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "324.24"
+      }
+    }
+  },
+  {
+    "endToEndId": "E10573521202603221302zzdcFyyRf4E",
+    "txid": "",
+    "valor": "360.00",
+    "horario": "2026-03-22T10:03:01.00-03:00",
+    "pagador": {
+      "cpf": "01746241233",
+      "nome": "VANUSA PEREIRA DOS SANTOS"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "360.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221301R3tpYSitIOO",
+    "txid": "",
+    "valor": "29.71",
+    "horario": "2026-03-22T10:06:41.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE18236120202603221301s06d07a2e95",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "29.71"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221315YNR1PDeiqda",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T10:20:28.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE10573521202603221315ffvjiqH0GjC",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260322133049540221739",
+    "txid": "",
+    "valor": "36.00",
+    "horario": "2026-03-22T10:31:06.00-03:00",
+    "pagador": {
+      "cpf": "05885136289",
+      "nome": "ERIAN BALIEIRO FERREIRA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "36.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221348LCMsqYZ3b0l",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T10:53:34.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE9040088820260322134858067825502",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221354FLasWFfRWoY",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T10:59:46.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE60701190202603221354DY56WV5UENW",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603221424s02bf810928",
+    "txid": "",
+    "valor": "180.00",
+    "horario": "2026-03-22T11:24:32.00-03:00",
+    "pagador": {
+      "cpf": "03213980250",
+      "nome": "RETHELY MENDES DE FREITAS"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "180.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221432OXAUxgsErJl",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T11:37:16.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE37880206202603221432PQEATK7IKFC",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221500GeURtTjqb7o",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T12:05:52.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE0000000020260322150036031818360",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221508U6b7yhTMlmH",
+    "txid": "",
+    "valor": "9.90",
+    "horario": "2026-03-22T12:13:42.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE18236120202603221508s07f3e8e4bc",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "9.90"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603221526s0336a3c43b",
+    "txid": "0278e3215f7d41b6b16ba82493e71633",
+    "valor": "275.58",
+    "horario": "2026-03-22T12:27:06.00-03:00",
+    "pagador": {
+      "cpf": "00682303208",
+      "nome": "MARIELLE SILVA DO CARMO"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "275.58"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221529sVwm5T1w7JQ",
+    "txid": "",
+    "valor": "59.43",
+    "horario": "2026-03-22T12:34:54.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE105735212026032215299bU1cazg2e1",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "59.43"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221547DmKeQS5ojlW",
+    "txid": "",
+    "valor": "39.62",
+    "horario": "2026-03-22T12:52:02.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE10573521202603221546AvFws7EnLOV",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "39.62"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221551rw9UGcgRmQs",
+    "txid": "",
+    "valor": "59.43",
+    "horario": "2026-03-22T12:56:35.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE18189547202603221550tRPYFYTmxnJ",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "59.43"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221621yQ7HthXUBOG",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T13:26:11.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE22896431202603221618w4jeOHvLPTp",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221625g7lLtsZN39w",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T13:30:43.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE08561701202603221625GKY0UAQDELI",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221643NP3ucbIi9LV",
+    "txid": "",
+    "valor": "59.43",
+    "horario": "2026-03-22T13:48:20.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE60746948202603221643A1672g0eJz8",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "59.43"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260322165042299196961",
+    "txid": "",
+    "valor": "125.00",
+    "horario": "2026-03-22T13:51:09.00-03:00",
+    "pagador": {
+      "cpf": "21211183220",
+      "nome": "MARCIO MURILO BORGES"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "125.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221704Io2qk5klwmf",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-22T14:09:43.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE60701190202603221704DY55XZJTJQT",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221716YiVtrmSQl2B",
+    "txid": "",
+    "valor": "39.62",
+    "horario": "2026-03-22T14:21:43.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE10573521202603221716uL69zfijiap",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "39.62"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221732H8iYZjsTJKD",
+    "txid": "",
+    "valor": "49.52",
+    "horario": "2026-03-22T14:37:23.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE33264668202603221732ef63a08533e",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "49.52"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221744zpOSdSYVRnQ",
+    "txid": "",
+    "valor": "79.24",
+    "horario": "2026-03-22T14:49:28.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE60701190202603221744DY5EZQGB1QR",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "79.24"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603221747ixK3AIlVYqv",
+    "txid": "",
+    "valor": "79.24",
+    "horario": "2026-03-22T14:52:22.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE9040088820260322174758079132124",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "79.24"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260322181716583109932",
+    "txid": "",
+    "valor": "50.00",
+    "horario": "2026-03-22T15:17:40.00-03:00",
+    "pagador": {
+      "cpf": "21211183220",
+      "nome": "MARCIO MURILO BORGES"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "50.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E60701190202603231312DY5AG7ORL5M",
+    "txid": "",
+    "valor": "214.76",
+    "horario": "2026-03-23T10:13:02.00-03:00",
+    "pagador": {
+      "cpf": "02947575202",
+      "nome": "LILIANE REIS DA COSTA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "214.76"
+      }
+    }
+  },
+  {
+    "endToEndId": "E31872495202603231512okpGENcYOz3",
+    "txid": "522193178da84b02911a70a8c86a7705",
+    "valor": "132.73",
+    "horario": "2026-03-23T12:13:11.00-03:00",
+    "pagador": {
+      "cpf": "75809206204",
+      "nome": "IRAILDE CARDOSO TAVARES"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "132.73"
+      }
+    }
+  },
+  {
+    "endToEndId": "E22896431202603231649Zt1OnamI674",
+    "txid": "00249afbcbd34797bcb4dd22e404658a",
+    "valor": "372.00",
+    "horario": "2026-03-23T13:49:42.00-03:00",
+    "pagador": {
+      "cpf": "84106638215",
+      "nome": "JOAO GUALBERTO DA SILVA CABRAL JUNIOR"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "372.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E22896431202603231651bdGp9QpSfKw",
+    "txid": "9bef77fc7dc64dfa84899f7715c0bd08",
+    "valor": "368.64",
+    "horario": "2026-03-23T13:51:14.00-03:00",
+    "pagador": {
+      "cpf": "84106638215",
+      "nome": "JOAO GUALBERTO DA SILVA CABRAL JUNIOR"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "368.64"
+      }
+    }
+  },
+  {
+    "endToEndId": "E00360305202603231706106e78210c7",
+    "txid": "0b938986b85947979444bba60e4a7bf4",
+    "valor": "1416.16",
+    "horario": "2026-03-23T14:06:10.00-03:00",
+    "pagador": {
+      "cpf": "00078390222",
+      "nome": "JOSE DE ANCHIETA SOUZA MARTINS"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "1416.16"
+      }
+    }
+  },
+  {
+    "endToEndId": "E60701190202603231743DY5WLC6W94H",
+    "txid": "",
+    "valor": "1580.00",
+    "horario": "2026-03-23T14:44:11.00-03:00",
+    "pagador": {
+      "cnpj": "37714764000159",
+      "nome": "PONTAO XINGU"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "1580.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E00360305202603231757eefaa58ce06",
+    "txid": "",
+    "valor": "800.00",
+    "horario": "2026-03-23T14:58:11.00-03:00",
+    "pagador": {
+      "cpf": "00078390222",
+      "nome": "JOSE DE ANCHIETA SOUZA MARTINS"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "800.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260323184647545293181",
+    "txid": "",
+    "valor": "420.00",
+    "horario": "2026-03-23T15:46:58.00-03:00",
+    "pagador": {
+      "cpf": "00525786236",
+      "nome": "JANAINA ALEX OLIVEIRA DA SILVA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "420.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603231940gzlM6hRWOsX",
+    "txid": "",
+    "valor": "247.62",
+    "horario": "2026-03-23T16:45:31.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE00360305202603231940dda1a84a163",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "247.62"
+      }
+    }
+  },
+  {
+    "endToEndId": "E9040088820260323210058141239689",
+    "txid": "441ba19448eb4d5fa05f6912ec5520fb",
+    "valor": "745.74",
+    "horario": "2026-03-23T18:00:47.00-03:00",
+    "pagador": {
+      "cpf": "08256570245",
+      "nome": "EDNILSON DA SILVA BATISTA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "745.74"
+      }
+    }
+  },
+  {
+    "endToEndId": "E22896431202603240048eQlnI6nRr63",
+    "txid": "3bf0d29460a942f89de410aa54a498fe",
+    "valor": "178.68",
+    "horario": "2026-03-23T21:48:49.00-03:00",
+    "pagador": {
+      "cpf": "07806716270",
+      "nome": "BRUNA GABRIELLE MEDEIROS ROCHA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "178.68"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603241507s1961e2e34a",
+    "txid": "",
+    "valor": "300.00",
+    "horario": "2026-03-24T12:07:26.00-03:00",
+    "pagador": {
+      "cnpj": "49566975000170",
+      "nome": "DAILTON D10"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "300.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603241539s1406e792bd",
+    "txid": "2ce0208564f94c3aa8431f25c321c098",
+    "valor": "1050.00",
+    "horario": "2026-03-24T12:39:45.00-03:00",
+    "pagador": {
+      "cpf": "67520200272",
+      "nome": "TATIANA LOUREIRO TAVARES"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "1050.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E00360305202603241648be7de471e4e",
+    "txid": "33c876245cab429a9c05e686b9bb2ffe",
+    "valor": "229.65",
+    "horario": "2026-03-24T13:49:01.00-03:00",
+    "pagador": {
+      "cpf": "88479048204",
+      "nome": "JOSIANE SOUZA SILVA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "229.65"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603241651s16394c5ef3",
+    "txid": "f38caff658ee41c1ae4b66b2e82b1cb6",
+    "valor": "232.65",
+    "horario": "2026-03-24T13:52:48.00-03:00",
+    "pagador": {
+      "cpf": "69468109291",
+      "nome": "ADRIANA PEREIRA MATOS DE OLIVEIRA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "232.65"
+      }
+    }
+  },
+  {
+    "endToEndId": "E003603052026032420094251c954d6f",
+    "txid": "93a9902a5b4447f09f97575b900b212d",
+    "valor": "461.71",
+    "horario": "2026-03-24T17:10:09.00-03:00",
+    "pagador": {
+      "cpf": "02974994245",
+      "nome": "MARLEY NASCIMENTO SODRE"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "461.71"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260325001738116497139",
+    "txid": "cf776e63c7f842618b57f101d5ad4608",
+    "valor": "237.68",
+    "horario": "2026-03-24T21:17:51.00-03:00",
+    "pagador": {
+      "cpf": "17603021200",
+      "nome": "MONICA ELLEN GOMES DA COSTA CORDOVIL"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "237.68"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603251404FDc2jDpB9Cr",
+    "txid": "",
+    "valor": "39.62",
+    "horario": "2026-03-25T11:09:08.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE60746948202603251403A57370H9MLE",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "39.62"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0000000020260325141438502438792",
+    "txid": "",
+    "valor": "180.00",
+    "horario": "2026-03-25T11:14:46.00-03:00",
+    "pagador": {
+      "cpf": "09691370280",
+      "nome": "GLEYCE JULIANA DA ROCHA LIMA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "180.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603251506s1792080a49",
+    "txid": "",
+    "valor": "100.00",
+    "horario": "2026-03-25T12:06:47.00-03:00",
+    "pagador": {
+      "cpf": "48286966287",
+      "nome": "NILCELENE OLIVEIRA DO NASCIMENTO"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "100.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E01027058202603251633R1mWc4DseuF",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-25T13:38:40.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE18236120202603251633s1363be8ace",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E010270582026032516394ndxjk6lwh1",
+    "txid": "",
+    "valor": "39.62",
+    "horario": "2026-03-25T13:44:36.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE18236120202603251639s0742a60095",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "39.62"
+      }
+    }
+  },
+  {
+    "endToEndId": "E18236120202603251721s0735ea4f29",
+    "txid": "",
+    "valor": "125.00",
+    "horario": "2026-03-25T14:22:15.00-03:00",
+    "pagador": {
+      "cpf": "02705650270",
+      "nome": "DEBORA SOUZA MONTEIRO"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "125.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E04913711202603251724FBP8HA9AVBK",
+    "txid": "",
+    "valor": "300.00",
+    "horario": "2026-03-25T14:24:53.00-03:00",
+    "pagador": {
+      "cpf": "67431658249",
+      "nome": "PATRICIA DE FATIMA LIMA DA SILVA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "300.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E22896431202603251733CKB9PG49EFF",
+    "txid": "",
+    "valor": "525.00",
+    "horario": "2026-03-25T14:34:12.00-03:00",
+    "pagador": {
+      "cpf": "46043977249",
+      "nome": "LUCILENE MARTINS DANTAS"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "525.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E04913711202603251808JI942FPC9PV",
+    "txid": "f5b99a907e9c4c9488032ef5b2b1a589",
+    "valor": "230.70",
+    "horario": "2026-03-25T15:08:24.00-03:00",
+    "pagador": {
+      "cpf": "25731653291",
+      "nome": "JOSE WALTER CASSUNDE DE SOUZA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "230.70"
+      }
+    }
+  },
+  {
+    "endToEndId": "E04913711202603251820AMWB5KMMV3D",
+    "txid": "0a55ab69b2824632a5ad778f3b20ef1b",
+    "valor": "235.43",
+    "horario": "2026-03-25T15:21:00.00-03:00",
+    "pagador": {
+      "cpf": "03678569218",
+      "nome": "MATHEUS GOMES DA COSTA CORDOVIL"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "235.43"
+      }
+    }
+  },
+  {
+    "endToEndId": "E04913711202603251822NFCIES24SME",
+    "txid": "9f15e845544c41d092af2dbfa1887296",
+    "valor": "233.10",
+    "horario": "2026-03-25T15:22:41.00-03:00",
+    "pagador": {
+      "cpf": "03678569218",
+      "nome": "MATHEUS GOMES DA COSTA CORDOVIL"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "233.10"
+      }
+    }
+  },
+  {
+    "endToEndId": "E22896431202603251827WZKNDXSJZYF",
+    "txid": "",
+    "valor": "350.00",
+    "horario": "2026-03-25T15:27:47.00-03:00",
+    "pagador": {
+      "cpf": "05494554260",
+      "nome": "PAULO HENRIQUE SOUZA DA CRUZ"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "350.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E60701190202603251853DY5J0OKJ9QJ",
+    "txid": "6ee037a33ee74bffb60753cb36f78722",
+    "valor": "279.10",
+    "horario": "2026-03-25T15:53:49.00-03:00",
+    "pagador": {
+      "cpf": "01649223269",
+      "nome": "ALAN JHONATAN SOUZA DO ROSARIO"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "279.10"
+      }
+    }
+  },
+  {
+    "endToEndId": "E003603052026032601194d7f486a0eb",
+    "txid": "0b6526ada7744ba19b20d96f84654271",
+    "valor": "464.10",
+    "horario": "2026-03-25T22:19:25.00-03:00",
+    "pagador": {
+      "cnpj": "31071321000100",
+      "nome": "POUSADA OLHO GREGO"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "464.10"
+      }
+    }
+  },
+  {
+    "endToEndId": "E838361142026032615002UeLL4D3qi2",
+    "txid": "",
+    "valor": "250.00",
+    "horario": "2026-03-26T04:05:33.00-03:00",
+    "pagador": {
+      "cpf": "91270944215",
+      "nome": "JANILTON SILVEIRA LOUREIRO"
+    },
+    "infoPagador": "Guara Park plano 4 anos",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "250.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E010270582026032612360o2lsDSy6Th",
+    "txid": "",
+    "valor": "19.81",
+    "horario": "2026-03-26T09:41:42.00-03:00",
+    "pagador": {
+      "cnpj": "10638730000176",
+      "nome": "GUARA ACQUA PARK"
+    },
+    "infoPagador": "SE003603052026032612362cf923a0ec9",
+    "chave": "",
+    "componentesValor": {
+      "original": {
+        "valor": "19.81"
+      }
+    }
+  },
+  {
+    "endToEndId": "E0036030520260326134761ccb80ff9e",
+    "txid": "",
+    "valor": "50.00",
+    "horario": "2026-03-26T10:48:01.00-03:00",
+    "pagador": {
+      "cpf": "66481465249",
+      "nome": "NILMA MARIA DE SOUSA RIBEIRO ASSAD"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "50.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E00360305202603261348fdf80e144a5",
+    "txid": "",
+    "valor": "130.00",
+    "horario": "2026-03-26T10:49:13.00-03:00",
+    "pagador": {
+      "cpf": "66481465249",
+      "nome": "NILMA MARIA DE SOUSA RIBEIRO ASSAD"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "130.00"
+      }
+    }
+  },
+  {
+    "endToEndId": "E60746948202603261432M3737LQ1H80",
+    "txid": "0411914c228741e6b9ad1ffcfd70512c",
+    "valor": "408.85",
+    "horario": "2026-03-26T11:33:02.00-03:00",
+    "pagador": {
+      "cpf": "06638165216",
+      "nome": "NAELY NUNES CORREA DE SOUZA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "408.85"
+      }
+    }
+  },
+  {
+    "endToEndId": "E60746948202603261436M3737pFCzJ8",
+    "txid": "42ecfb1514e841d3a5417f869b2b9906",
+    "valor": "405.04",
+    "horario": "2026-03-26T11:36:20.00-03:00",
+    "pagador": {
+      "cpf": "06638165216",
+      "nome": "NAELY NUNES CORREA DE SOUZA"
+    },
+    "infoPagador": "",
+    "chave": "10638730000176",
+    "componentesValor": {
+      "original": {
+        "valor": "405.04"
+      }
+    }
+  }
+]
