@@ -219,7 +219,7 @@ export async function processarListaPOS(lista: any[], integracao: any) {
                     updates.push(
                         {
                             deleteOne: {
-                                filter: {order_id: element.order?.id || element.id}
+                                filter: { order_id: element.order?.id || element.id }
                             }
                         }
                     )
