@@ -247,19 +247,19 @@ async function start() {
                 // fs.writeFileSync(__dirname + '/mp-response-eclipse.json', JSON.stringify(response, null, 2));
                 // await processarListaPOS(response, integracao!);
 
-                // let integracao = await IntegracoesModel.findOne({ sku: "loirin_mp_payments" });
-                // let mp = new MercadoPagoPayments();
-                // await mp.init(integracao!._id.toString());
-                // let times = 3;
-                // let dias_para_tras = 35;
-                // for (let i = 0; i <= dias_para_tras; i++) {
-                //     let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
-                //     for (let j = 0; j < times; j++) {
-                //         logDev(`Processando recebimentos do dia ${data}`);
-                //         let response = await mp.getRecebimentos(data, data);
-                //         await processarListaPOS(response, integracao!);
-                //     }
-                // }
+                let integracao = await IntegracoesModel.findOne({ sku: "loirin_mp_payments" });
+                let mp = new MercadoPagoPayments();
+                await mp.init(integracao!._id.toString());
+                let times = 3;
+                let dias_para_tras = 0;
+                for (let i = 0; i <= dias_para_tras; i++) {
+                    let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
+                    for (let j = 0; j < times; j++) {
+                        logDev(`Processando recebimentos do dia ${data}`);
+                        let response = await mp.getRecebimentos(data, data);
+                        await processarListaPOS(response, integracao!);
+                    }
+                }
 
                 // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb10' });
                 // let bb = new BBIntegration();
@@ -295,7 +295,7 @@ async function start() {
                 //     for (let i = 0; i <= dias_pra_tras; i++) {
                 //         try {
                 //             let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
-                //             logDev(`Processando recebimentos do dia ${data} : ${integracao.nome}`);
+                //             logDev(`Processando recebimentos do dia ${i}/${dias_pra_tras} ${data} : ${integracao.nome}`);
                 //             let response = await santander.getRecebimentos(data, data);
                 //             await processarListaPixs(response, integracao!);
                 //         } catch (error) {

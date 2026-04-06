@@ -215,6 +215,18 @@ export async function processarListaPOS(lista: any[], integracao: any) {
                     // Pular para o prox elemento
                     return;
                 }
+                if (element?.payment_method?.type === 'account_money' && element?.point_of_interaction?.business_info?.sub_unit) {
+                    updates.push(
+                        {
+                            deleteOne: {
+                                filter: {order_id: element.order?.id || element.id}
+                            }
+                        }
+                    )
+                    console.log("Apagando...", element.transaction_amount);
+                    // Pular para o prox elemento
+                    return;
+                }
                 if (element?.point_of_interaction?.type === 'POINT') {
                     payload.pos_tipo = 'MP_POINT';
                     payload.pos_identificacao = element.point_of_interaction.device.serial_number || 'NOT_IDENTIFIED';
