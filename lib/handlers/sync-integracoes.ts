@@ -210,7 +210,18 @@ export async function processarListaPOS(lista: any[], integracao: any) {
                 payload.valor = element.transaction_amount || 0;
                 payload.data = dayjs(element.date_created).toDate();
 
-
+                if (element?.point_of_interaction?.type === 'PSP_TRANSFER' && element?.point_of_interaction?.business_info?.sub_unit == 'money_outflows') {
+                    // Pular para o prox elemento
+                    console.log("Delete...");
+                    updates.push(
+                        {
+                            deleteOne: {
+                                filter: { order_id: element.order?.id || element.id }
+                            }
+                        }
+                    )
+                    return;
+                }
                 if (element?.sub_type === 'INTRA_PSP' && element?.payment_method?.type !== 'account_money') {
                     // Pular para o prox elemento
                     return;

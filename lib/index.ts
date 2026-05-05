@@ -23,6 +23,7 @@ import { BradescoIntegration } from './integrations/bradesco';
 import Consoft from './integrations/consoft';
 import { BBIntegration } from './integrations/banco-brasil';
 import { SantanderIntegration } from './integrations/santander';
+import { RecebimentosPixModel } from './models/recebimentos-pix.model';
 
 dayjs.locale('pt-br');
 
@@ -149,24 +150,61 @@ async function addEmpresasToAdmin() {
     }
 }
 
+async function deletarEmpresaCompleta(id = '6977d090b92181f82042cb34') {
+    try {
+        let empresa = await EmpresasModel.findOne({ _id: id });
+        if (empresa) {
+            await EmpresasModel.deleteOne({ _id: id });
+        }
+        // Delete POS
+        await POSModel.deleteMany({ 'empresa._id': id });
+        // Delete PIXes
+        await RecebimentosPixModel.deleteMany({ 'empresa._id': id });
+        // Delete recebimentos POS
+        await RecebimentosPOSModel.deleteMany({ 'empresa._id': id });
+        // Delete perfis
+        await PerfisModel.deleteMany({ 'empresa._id': id });
+        // Delete integracoes
+        await IntegracoesModel.deleteMany({ 'empresa._id': id });
+        // Delete empresa from users
+        await UsuariosModel.updateMany(
+            {
+                'empresas._id': id,
+            },
+            {
+                $pull: {
+                    empresas: {
+                        _id: id,
+                    }
+                }
+            }
+        )
+        logDev("Empresa deletada com sucesso:", empresa?.nome);
+    } catch (error) {
+        console.log("Falha ao deletar a empresa", error);
+    }
+}
+
 async function start() {
     try {
         await mongoose.connect(DB_URL);
         server.listen(PORT, async () => {
             console.log(`Server is running on port ${PORT}`);
             try {
-                // addEmpresasToAdmin()
-                // criarEmpresaNova(
-                //     'GUARA ACQUA PARK',
-                //     '10638730000176',
-                //     '001900',
+                // await criarEmpresaNova(
+                //     'BONSUCESSO CARTELA - NOVA TECH',
+                //     '99999999000199',
+                //     '021006',
                 //     'Daniel Barbosa Neto',
                 //     '94892032204',
                 //     'daniel',
                 //     '91982020329',
                 //     'D4a3n2i1',
-                //     true
+                //     false
                 // )
+                // await addEmpresasToAdmin()
+
+
                 // let empresa_alterar_nome = await EmpresasModel.findOne({ documento: "61681788000133" })
                 // if (empresa_alterar_nome) {
                 //     // let novo_nome = 'BOTAFOGO A ALVIN - HAVE ECLIPSE';
@@ -236,30 +274,30 @@ async function start() {
                 //     logDev("Nome da empresa alterado com sucesso para:", novo_nome);
                 // }
 
-
-                // let integracao = await IntegracoesModel.findOne({ sku: "newmago_mp_payments" });
-                // let integracao = await IntegracoesModel.findOne({ sku: "magolocacoes_mp_payments" });
-                // let mp = new MercadoPagoPayments();
-                // await mp.init(integracao!._id.toString());
-                // let data = '2026-01-30';
-                // logDev(`Processando recebimentos do dia ${data}`);
-                // let response = await mp.getRecebimentos(data, data);
-                // fs.writeFileSync(__dirname + '/mp-response-eclipse.json', JSON.stringify(response, null, 2));
-                // await processarListaPOS(response, integracao!);
-
-                // let integracao = await IntegracoesModel.findOne({ sku: "loirin_mp_payments" });
-                // let mp = new MercadoPagoPayments();
-                // await mp.init(integracao!._id.toString());
-                // let times = 3;
-                // let dias_para_tras = 0;
-                // for (let i = 0; i <= dias_para_tras; i++) {
-                //     let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
-                //     for (let j = 0; j < times; j++) {
-                //         logDev(`Processando recebimentos do dia ${data}`);
-                //         let response = await mp.getRecebimentos(data, data);
-                //         await processarListaPOS(response, integracao!);
-                //     }
-                // }
+                let integracao = await IntegracoesModel.findOne({
+                    sku: {
+                        $in: [
+                            "loirin_mp_payments",
+                            "celsomago_mp_payments",
+                            "magolocacoesltda_mp_payments",
+                            "newmago_mp_payments",
+                            "magolocacoes_mp_payments",
+                            "novatech_mp_payments"
+                        ]
+                    }
+                });
+                let mp = new MercadoPagoPayments();
+                await mp.init(integracao!._id.toString());
+                let times = 3;
+                let dias_para_tras = 90;
+                for (let i = 0; i <= dias_para_tras; i++) {
+                    let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
+                    for (let j = 0; j < times; j++) {
+                        logDev(`Processando recebimentos do dia ${data}`);
+                        let response = await mp.getRecebimentos(data, data);
+                        await processarListaPOS(response, integracao!);
+                    }
+                }
 
                 // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb10' });
                 // let bb = new BBIntegration();
