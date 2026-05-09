@@ -274,30 +274,30 @@ async function start() {
                 //     logDev("Nome da empresa alterado com sucesso para:", novo_nome);
                 // }
 
-                let integracao = await IntegracoesModel.findOne({
-                    sku: {
-                        $in: [
-                            "loirin_mp_payments",
-                            "celsomago_mp_payments",
-                            "magolocacoesltda_mp_payments",
-                            "newmago_mp_payments",
-                            "magolocacoes_mp_payments",
-                            "novatech_mp_payments"
-                        ]
-                    }
-                });
-                let mp = new MercadoPagoPayments();
-                await mp.init(integracao!._id.toString());
-                let times = 3;
-                let dias_para_tras = 90;
-                for (let i = 0; i <= dias_para_tras; i++) {
-                    let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
-                    for (let j = 0; j < times; j++) {
-                        logDev(`Processando recebimentos do dia ${data}`);
-                        let response = await mp.getRecebimentos(data, data);
-                        await processarListaPOS(response, integracao!);
-                    }
-                }
+                // let integracao = await IntegracoesModel.findOne({
+                //     sku: {
+                //         $in: [
+                //             "loirin_mp_payments",
+                //             "celsomago_mp_payments",
+                //             "magolocacoesltda_mp_payments",
+                //             "newmago_mp_payments",
+                //             "magolocacoes_mp_payments",
+                //             "novatech_mp_payments"
+                //         ]
+                //     }
+                // });
+                // let mp = new MercadoPagoPayments();
+                // await mp.init(integracao!._id.toString());
+                // let times = 3;
+                // let dias_para_tras = 90;
+                // for (let i = 0; i <= dias_para_tras; i++) {
+                //     let data = dayjs().add(-i, 'day').format("YYYY-MM-DD");
+                //     for (let j = 0; j < times; j++) {
+                //         logDev(`Processando recebimentos do dia ${data}`);
+                //         let response = await mp.getRecebimentos(data, data);
+                //         await processarListaPOS(response, integracao!);
+                //     }
+                // }
 
                 // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb10' });
                 // let bb = new BBIntegration();
