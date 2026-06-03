@@ -33,6 +33,8 @@ const server = express(),
 
 if (!DB_URL) process.exit(1);
 
+server.set('trust proxy', 1);
+
 let static_path = path.join(__dirname, 'public');
 server.use(express.static(static_path));
 
@@ -395,12 +397,6 @@ function resolveHeaders(req: express.Request, res: express.Response, next: expre
     if (userAgent?.includes("Google")) {
         return next();
     }
-    if (userAgent?.includes('Dart')) {
-        userAgent = 'EstrelaDalvaApp';
-        if (appVersion && appPlatform) {
-            userAgent += `/${appVersion} (${appPlatform})`;
-        }
-    }
     let payload: any = {
         user_agent: userAgent,
         origin: 'not defined',
@@ -409,9 +405,6 @@ function resolveHeaders(req: express.Request, res: express.Response, next: expre
         region: req.headers['x-appengine-region'],
         latlng: req.headers['x-appengine-latlng'],
         ip: req.headers["x-forwarded-for"] || req.connection.remoteAddress,
-    }
-    if (userAgent?.includes('EstrelaDalvaApp')) {
-        payload.origin = 'EstrelaDalvaApp';
     }
     payload.ip = payload.ip?.replace('::ffff:', '');
     if (!!req?.path) {

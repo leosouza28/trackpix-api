@@ -6,7 +6,9 @@ async function start() {
     if (interestFiles.length) {
         for (let i of interestFiles) {
             if (i == 'package.json' || i == 'package-lock.json' || i == 'source-context.json' || i == 'yarn.lock' || i == 'tsconfig.json') continue;
+            if (i.includes('/._') || i.startsWith('._')) continue;
             let cpDir = i.split("lib").join("dist");
+            if (cpDir === i) continue;
             mainFs.cpSync(i, cpDir);
         }
     }

@@ -5,8 +5,12 @@ import empresaController from '../controllers/empresa.controller';
 
 const router = Router();
 
+router.get('/health', (_req: Request, res: Response) => {
+    res.json({ ok: true, service: 'trackpix-api' });
+});
+
 router.get('/', autenticar, (req: Request, res: Response) => {
-    res.json({ message: 'API Estrela Dalva 1.0.0' });
+    res.json({ message: 'TrackPIX API' });
 });
 router.get('/public/estados', comumController.getEstados);
 router.get('/public/cidades', comumController.getCidades);

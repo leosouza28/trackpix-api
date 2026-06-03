@@ -1,14 +1,15 @@
 {
-  "name": "estreladalva-api",
+  "name": "trackpix-api",
   "version": "1.0.1",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "build": "babel lib --extensions \".ts,.tsx\" --out-dir dist ; node copy-files.js",
     "dev": "cross-env DEV=1 TZ=utc ts-node-dev --respawn --files lib/index.ts",
-    "dev:cron": "cross-env DEV=1 TZ=utc ts-node-dev --respawn --files lib/webhook-server/cron-server.ts",
+    "dev:cron": "cross-env DEV=1 TZ=utc ts-node-dev --respawn --files lib/cron-worker.ts",
     "commit": "git add . ; git commit -m leo ; git pull origin main --rebase ; git push origin main",
     "update": "git reset --hard && git pull && npm i && npm run build && pm2 stop ecosystem.config.js && pm2 delete ecosystem.config.js && pm2 start ecosystem.config.js",
+    "start:vm": "pm2 start ecosystem.config.js",
     "dev:webhook": "cross-env DEV=1 TZ=utc ts-node-dev --respawn --files lib/webhook-server/webhook-server.ts",
     "type-check": "tsc --noEmit",
     "start": "node dist/index.js"
