@@ -29,6 +29,12 @@ const scopes = {
     "monitoramento.pos_leitura": "Permite acessar o monitoramento de POS",
     "monitoramento.boletos_leitura": "Permite acessar o monitoramento de boletos",
 
+    "integracoes.leitura": "Ler integrações bancárias",
+    "integracoes.editar": "Criar/editar integrações bancárias e certificados",
+
+    "empresas.leitura": "Ler cadastro de empresas",
+    "empresas.editar": "Criar/editar empresas e códigos de ativação",
+
     "relatorio.pix_recebidos": "Permite acessar o relatório de pix recebidos",
 
     "notificacao.pix_recebido": "Habilita notificações de PIX recebidos",

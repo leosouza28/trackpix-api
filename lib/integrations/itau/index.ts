@@ -1,11 +1,9 @@
 import axios from "axios";
 import { IntegracoesModel } from "../../models/integracoes.model";
-import https from 'https';
-import path from 'path';
-import fs from 'fs'
 import dayjs from "dayjs";
 import { logDev } from "../../util";
 import { RecebimentosPixModel } from "../../models/recebimentos-pix.model";
+import { loadHttpsAgent } from "../../services/certificate-loader.service";
 
 
 interface IIntegracao {
@@ -52,13 +50,7 @@ export class ItauIntegration {
             this.client_secret = integracao.client_secret!;
             this.auth_url = 'https://sts.itau.com.br/api';
             this.url = 'https://secure.api.itau';
-            let certPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.crt');
-            let keyPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'key.key');
-            this.httpsAgent = new https.Agent({
-                cert: fs.readFileSync(certPath),
-                key: fs.readFileSync(keyPath),
-                rejectUnauthorized: false
-            })
+            this.httpsAgent = await loadHttpsAgent(integracao);
             let need_auth = true;
             if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
                 // Dura apenas 5 minutos

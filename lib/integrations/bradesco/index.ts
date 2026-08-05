@@ -1,10 +1,8 @@
 import axios from "axios";
 import { IntegracoesModel } from "../../models/integracoes.model";
-import https from 'https';
-import path from 'path';
-import fs from 'fs'
 import dayjs from "dayjs";
 import { logDev } from "../../util";
+import { loadHttpsAgent } from "../../services/certificate-loader.service";
 
 
 interface IIntegracao {
@@ -72,13 +70,7 @@ export class BradescoIntegration {
                 this.numero_negociacao = integracao.numero_negociacao!;
             }
 
-            let certPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.pem');
-            let keyPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'key.pem');
-            this.httpsAgent = new https.Agent({
-                cert: fs.readFileSync(certPath),
-                key: fs.readFileSync(keyPath),
-                rejectUnauthorized: false
-            })
+            this.httpsAgent = await loadHttpsAgent(integracao);
             let need_auth = true
             if (integracao?.bearer_token && integracao?.last_bearer_token_update && scope == 'pix') {
                 // Dura apenas 1 hora

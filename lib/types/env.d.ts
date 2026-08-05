@@ -15,5 +15,11 @@ declare namespace NodeJS {
         BB_PROD_CLIENT_SECRET: string;
         BB_PROD_BASIC_TOKEN: string;
         BB_GEN_AUTH_TOKEN: string;
+
+        R2_ACCOUNT_ID: string;
+        R2_ACCESS_KEY_ID: string;
+        R2_SECRET_ACCESS_KEY: string;
+        R2_BUCKET_NAME: string;
+        R2_ENDPOINT: string;
     }
 }

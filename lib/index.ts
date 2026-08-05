@@ -24,6 +24,7 @@ import Consoft from './integrations/consoft';
 import { BBIntegration } from './integrations/banco-brasil';
 import { SantanderIntegration } from './integrations/santander';
 import { RecebimentosPixModel } from './models/recebimentos-pix.model';
+import { ItauIntegration } from './integrations/itau';
 
 dayjs.locale('pt-br');
 
@@ -301,6 +302,19 @@ async function start() {
                 //     }
                 // }
 
+                // let integracao = await IntegracoesModel.findOne({ 'sku': 'centermix' });
+                // if (integracao) {
+                //     let itau = new ItauIntegration();
+                //     await itau.init(integracao!._id.toString());
+                //     let dias_pra_tras = 7;
+                //     for (let d = 0; d <= dias_pra_tras; d++) {
+                //         let data = dayjs().add(-d, 'day').format("YYYY-MM-DD");
+                //         logDev(`Processando recebimentos do dia ${data}`);
+                //         let response = await itau.getRecebimentos(data, data);
+                //         await processarListaPixs(response, integracao!);
+                //     }
+                // }
+
                 // let integracao = await IntegracoesModel.findOne({ 'sku': 'guarabb10' });
                 // let bb = new BBIntegration();
                 // await bb.init(integracao!._id.toString())
@@ -344,8 +358,6 @@ async function start() {
                 //     }
                 //     console.log("FIM INT")
                 // }
-
-
 
 
                 // fs.writeFileSync(__dirname+ '/testeguara.json', JSON.stringify(response, null, 2));

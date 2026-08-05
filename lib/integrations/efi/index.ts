@@ -1,11 +1,9 @@
 import axios from "axios";
 import { IntegracoesModel } from "../../models/integracoes.model";
-import https from 'https';
-import path from 'path';
-import fs from 'fs'
 import dayjs from "dayjs";
 import { logDev } from "../../util";
 import { ObjectId } from "mongoose";
+import { loadHttpsAgent } from "../../services/certificate-loader.service";
 
 interface IIntegracao {
     _id?: ObjectId;
@@ -45,11 +43,7 @@ export class EfiIntegration {
             this.client_secret = integracao.client_secret!;
 
             this.url = 'https://pix.api.efipay.com.br';
-            let pfxPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.p12');
-            this.httpsAgent = new https.Agent({
-                pfx: fs.readFileSync(pfxPath),
-                rejectUnauthorized: false
-            })
+            this.httpsAgent = await loadHttpsAgent(integracao);
             let need_auth = true
             if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
                 // Dura apenas 1 hora

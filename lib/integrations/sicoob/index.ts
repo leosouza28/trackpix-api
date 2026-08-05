@@ -1,12 +1,10 @@
 import axios from 'axios';
-import https from 'https';
-import fs from 'fs';
 import dayjs from 'dayjs';
 import { response } from 'express';
 import { logDev } from '../../util';
 import { v4 } from 'uuid';
 import { IntegracoesModel } from '../../models/integracoes.model';
-import path from 'path';
+import { loadHttpsAgent } from '../../services/certificate-loader.service';
 
 export class SicoobIntegration {
 
@@ -36,14 +34,7 @@ export class SicoobIntegration {
             this.auth_url = 'https://auth.sicoob.com.br/auth/realms/cooperado/protocol/openid-connect/token';
             this.url = 'https://api.sicoob.com.br';
             this.scopes = integracao.scopes!;
-            let certPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'cert.crt');
-            let keyPath = path.join(__dirname, 'certificates', integracao.path_certificado!, 'key.key');
-
-            this.httpsAgent = new https.Agent({
-                cert: fs.readFileSync(certPath),
-                key: fs.readFileSync(keyPath),
-                rejectUnauthorized: false
-            })
+            this.httpsAgent = await loadHttpsAgent(integracao);
             let need_auth = true;
             if (integracao?.bearer_token && integracao?.last_bearer_token_update) {
                 // Dura apenas 5 minutos
