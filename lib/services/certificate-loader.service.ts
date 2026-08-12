@@ -52,6 +52,24 @@ function resolveLegacyPaths(banco: string, pathCertificado: string): { certPath:
     throw new Error(`Certificado não encontrado no filesystem: ${base}`);
 }
 
+/** Lê cert/key legados do filesystem (quando ainda não migrados para R2). */
+export function loadLegacyCertificateFiles(banco: string, pathCertificado: string): {
+    cert: Buffer | null;
+    key: Buffer | null;
+} {
+    const { certPath, keyPath } = resolveLegacyPaths(banco, pathCertificado);
+    if (certPath.endsWith('.p12') || certPath.endsWith('.pfx')) {
+        throw Object.assign(
+            new Error('Download de certificado legado PFX/P12 não suportado; faça o reupload em PEM'),
+            { statusCode: 400 },
+        );
+    }
+    return {
+        cert: fs.existsSync(certPath) ? fs.readFileSync(certPath) : null,
+        key: keyPath && fs.existsSync(keyPath) ? fs.readFileSync(keyPath) : null,
+    };
+}
+
 export async function loadHttpsAgent(integracao: any): Promise<https.Agent> {
     const id = String(integracao._id);
     const cached = cache.get(id);

@@ -15,6 +15,7 @@ import { ItauIntegration } from '../integrations/itau';
 import { SicoobIntegration } from '../integrations/sicoob';
 import { BBIntegration } from '../integrations/banco-brasil';
 import { EfiIntegration } from '../integrations/efi';
+import { resyncIntegracao } from '../handlers/sync-integracoes';
 
 const SECRET_FIELDS = [
     'client_secret',
@@ -376,6 +377,32 @@ export default {
         }
     },
 
+    downloadCertificado: async (req: Request, res: Response) => {
+        try {
+            const integracao = await IntegracoesModel.findById(req.params.id);
+            if (!integracao) throw Object.assign(new Error('Integração não encontrada'), { statusCode: 404 });
+
+            const tipo = String(req.query.tipo || 'cert') as 'cert' | 'key';
+            const formato = String(req.query.formato || 'pem') as 'pem' | 'cer';
+
+            if (!['cert', 'key'].includes(tipo)) {
+                throw Object.assign(new Error('tipo inválido (use cert ou key)'), { statusCode: 400 });
+            }
+            if (!['pem', 'cer'].includes(formato)) {
+                throw Object.assign(new Error('formato inválido (use pem ou cer)'), { statusCode: 400 });
+            }
+
+            const file = await CertificateService.download(integracao, { tipo, formato });
+
+            res.setHeader('Content-Type', file.contentType);
+            res.setHeader('Content-Disposition', `attachment; filename="${file.filename}"`);
+            res.setHeader('Content-Length', String(file.buffer.length));
+            res.send(file.buffer);
+        } catch (error) {
+            errorHandler(error, res);
+        }
+    },
+
     testar: async (req: Request, res: Response) => {
         try {
             const integracao = await IntegracoesModel.findById(req.params.id);
@@ -410,6 +437,42 @@ export default {
             } else {
                 res.status(400).json({ ok: false, message: result?.error || 'Falha ao testar conexão', detail: result });
             }
+        } catch (error) {
+            errorHandler(error, res);
+        }
+    },
+
+    resync: async (req: Request, res: Response) => {
+        try {
+            const integracao = await IntegracoesModel.findById(req.params.id).lean();
+            if (!integracao) throw Object.assign(new Error('Integração não encontrada'), { statusCode: 404 });
+
+            const { data, dias } = req.body || {};
+            if (!data && (dias === undefined || dias === null || dias === '')) {
+                throw Object.assign(new Error('Informe "dias" ou "data" (YYYY-MM-DD)'), { statusCode: 400 });
+            }
+            if (data && dias !== undefined && dias !== null && dias !== '') {
+                throw Object.assign(new Error('Informe apenas "dias" ou apenas "data"'), { statusCode: 400 });
+            }
+
+            const result = await resyncIntegracao(integracao, {
+                data: data ? String(data) : undefined,
+                dias: dias !== undefined && dias !== null && dias !== '' ? Number(dias) : undefined,
+            });
+
+            // refresh last_sync for response
+            const updated = await IntegracoesModel.findById(integracao._id, { last_sync: 1 }).lean();
+
+            res.json({
+                ok: result.erros.length === 0,
+                message: result.erros.length
+                    ? `Ressincronização parcial: ${result.ok}/${result.datas.length} dias`
+                    : `Ressincronização concluída: ${result.ok} dia(s)`,
+                datas: result.datas,
+                dias_ok: result.ok,
+                erros: result.erros,
+                last_sync: updated?.last_sync || null,
+            });
         } catch (error) {
             errorHandler(error, res);
         }

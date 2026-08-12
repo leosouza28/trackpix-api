@@ -12,7 +12,9 @@ router.get('/v1/admin/integracoes/:id', autenticar, integracoesController.getByI
 router.post('/v1/admin/integracoes', autenticar, integracoesController.create);
 router.put('/v1/admin/integracoes/:id', autenticar, integracoesController.update);
 router.post('/v1/admin/integracoes/:id/certificado', autenticar, integracoesController.uploadCertificado);
+router.get('/v1/admin/integracoes/:id/certificado/download', autenticar, integracoesController.downloadCertificado);
 router.delete('/v1/admin/integracoes/:id/certificado', autenticar, integracoesController.deleteCertificado);
 router.post('/v1/admin/integracoes/:id/testar', autenticar, integracoesController.testar);
+router.post('/v1/admin/integracoes/:id/resync', autenticar, integracoesController.resync);
 
 export default router;

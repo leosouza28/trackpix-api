@@ -2,7 +2,7 @@ import forge from 'node-forge';
 import crypto from 'crypto';
 import { R2StorageService } from './r2-storage.service';
 import { computeCertificadoStatus } from '../models/integracoes.model';
-import { invalidateCertificateCache } from './certificate-loader.service';
+import { invalidateCertificateCache, loadLegacyCertificateFiles } from './certificate-loader.service';
 
 export interface ExtractedCertificate {
     certPem: string;
@@ -164,5 +164,68 @@ export const CertificateService = {
             try { await R2StorageService.delete(r2KeyKey); } catch { /* ignore missing */ }
         }
         if (integracaoId) invalidateCertificateCache(integracaoId);
+    },
+
+    /**
+     * Carrega o certificado (ou chave) da integração e devolve no formato solicitado.
+     * formato: pem (texto) | cer (DER binário, só para certificado público)
+     */
+    async download(integracao: any, opts: {
+        tipo?: 'cert' | 'key';
+        formato?: 'pem' | 'cer';
+    }): Promise<{ buffer: Buffer; filename: string; contentType: string }> {
+        const tipo = opts.tipo === 'key' ? 'key' : 'cert';
+        const formato = opts.formato === 'cer' ? 'cer' : 'pem';
+
+        if (tipo === 'key' && formato === 'cer') {
+            throw Object.assign(new Error('Formato .cer disponível apenas para o certificado público'), { statusCode: 400 });
+        }
+
+        let pemBuffer: Buffer | null = null;
+
+        if (integracao.certificado?.storage === 'r2') {
+            const r2Key = tipo === 'key'
+                ? integracao.certificado?.r2_key_key
+                : integracao.certificado?.r2_key_cert;
+            if (!r2Key) {
+                throw Object.assign(new Error('Arquivo não encontrado no armazenamento'), { statusCode: 404 });
+            }
+            pemBuffer = await R2StorageService.download(r2Key);
+        } else if (integracao.path_certificado) {
+            const files = loadLegacyCertificateFiles(integracao.banco, integracao.path_certificado);
+            pemBuffer = tipo === 'key' ? files.key : files.cert;
+            if (!pemBuffer) {
+                throw Object.assign(new Error('Arquivo legado não encontrado'), { statusCode: 404 });
+            }
+        } else {
+            throw Object.assign(new Error('Certificado não configurado para esta integração'), { statusCode: 404 });
+        }
+
+        const sku = (integracao.sku || integracao._id || 'certificado').toString().replace(/[^\w.-]+/g, '_');
+        const baseName = tipo === 'key' ? `${sku}-key` : `${sku}-cert`;
+
+        if (formato === 'cer') {
+            const pem = pemBuffer.toString('utf8');
+            if (!pem.includes('BEGIN CERTIFICATE')) {
+                throw Object.assign(new Error('Conteúdo não é um certificado PEM válido'), { statusCode: 400 });
+            }
+            try {
+                const cert = forge.pki.certificateFromPem(pem);
+                const der = forge.asn1.toDer(forge.pki.certificateToAsn1(cert)).getBytes();
+                return {
+                    buffer: Buffer.from(der, 'binary'),
+                    filename: `${baseName}.cer`,
+                    contentType: 'application/pkix-cert',
+                };
+            } catch {
+                throw Object.assign(new Error('Falha ao converter certificado para .cer'), { statusCode: 400 });
+            }
+        }
+
+        return {
+            buffer: pemBuffer,
+            filename: `${baseName}.pem`,
+            contentType: 'application/x-pem-file',
+        };
     },
 };

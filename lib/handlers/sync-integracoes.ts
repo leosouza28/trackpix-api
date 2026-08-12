@@ -34,7 +34,7 @@ export default async () => {
 }
 
 
-async function syncIntegracao(integracao: any, data: string) {
+export async function syncIntegracao(integracao: any, data: string) {
     try {
         let dataParam = data || dayjs().add(-3, 'h').format("YYYY-MM-DD");
         let hoje = dayjs(dataParam as string).format("YYYY-MM-DD");
@@ -101,6 +101,50 @@ async function syncIntegracao(integracao: any, data: string) {
     } catch (error) {
         throw error;
     }
+}
+
+/**
+ * Ressincroniza uma integração para uma data específica ou para os últimos N dias (BRT).
+ */
+export async function resyncIntegracao(integracao: any, opts: {
+    data?: string;
+    dias?: number;
+}): Promise<{ datas: string[]; ok: number; erros: { data: string; error: string }[] }> {
+    const hojeBrt = dayjs().add(-3, 'h').startOf('day');
+    const datas: string[] = [];
+
+    if (opts.data) {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(String(opts.data))) {
+            throw Object.assign(new Error('Data inválida (use YYYY-MM-DD)'), { statusCode: 400 });
+        }
+        const d = dayjs(opts.data);
+        if (!d.isValid()) {
+            throw Object.assign(new Error('Data inválida'), { statusCode: 400 });
+        }
+        if (d.isAfter(hojeBrt, 'day')) {
+            throw Object.assign(new Error('Data não pode ser futura'), { statusCode: 400 });
+        }
+        datas.push(d.format('YYYY-MM-DD'));
+    } else {
+        const dias = Math.max(1, Math.min(90, Number(opts.dias) || 1));
+        for (let i = dias - 1; i >= 0; i--) {
+            datas.push(hojeBrt.subtract(i, 'day').format('YYYY-MM-DD'));
+        }
+    }
+
+    const erros: { data: string; error: string }[] = [];
+    let ok = 0;
+
+    for (const data of datas) {
+        try {
+            await syncIntegracao(integracao, data);
+            ok++;
+        } catch (error: any) {
+            erros.push({ data, error: error?.message || String(error) });
+        }
+    }
+
+    return { datas, ok, erros };
 }
 
 
